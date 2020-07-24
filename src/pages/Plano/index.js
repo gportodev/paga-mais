@@ -4,24 +4,25 @@ import { Background, Logo, Container, Header, Title } from '../../components/Lay
 
 import { useFonts, Roboto_300Light, Roboto_100Thin } from '@expo-google-fonts/roboto'
 
+import { Alert } from 'react-native'
+
 import { AppLoading } from 'expo'
 
 import img from '../../assets/img.png'
 import logo from '../../assets/logo.png'
-import phone from '../../assets/phone.png'
 import home from '../../assets/home.png'
 import compass from '../../assets/compass.png'
 import clock from '../../assets/clock.png'
 
 import {
   Flat,
-  Input,
   List,
-  Cover,
-  Icon,
   Button,
-  Name,
-  Calculo
+  Cover,
+  Input,
+  Icon,
+  Calculo,
+  Name
 } from './styles'
 
 export default function Plano ({ route, navigation }) {
@@ -31,6 +32,45 @@ export default function Plano ({ route, navigation }) {
 
   const [time, setTime] = useState()
 
+  const { choice } = route.params
+
+  const prices = {
+    '011': { '016': 1.9, '017': 1.7, '018': 1.9 },
+    '016': { '011': 2.9 },
+    '017': { '011': 2.7 },
+    '018': { '011': 1.9 }
+  }
+
+  function validateInput () {
+    if (!origin || !prices[origin]) {
+      Alert.alert('DDD de origem incorreto! Verifique novamente!')
+
+      return 0
+    }
+
+    if (!destiny || !prices[destiny]) {
+      Alert.alert('DDD de destino incorreto! Verifique novamente!')
+
+      return 0
+    }
+
+    if (!prices[origin][destiny]) {
+      Alert.alert('DDDs não existe! Verifique novamente!')
+
+      return 0
+    }
+
+    if (!time || isNaN(time)) {
+      Alert.alert('Tempo incorreto! Verifique novamente!')
+
+      return 0
+    } else {
+      navigation.navigate(
+        'FaleMais',
+        { origin: origin, destiny: destiny, time: time, prices: prices, choice: choice })
+    }
+  }
+
   const [fontsLoaded] = useFonts({
     Roboto_300Light,
     Roboto_100Thin
@@ -39,8 +79,6 @@ export default function Plano ({ route, navigation }) {
   if (!fontsLoaded) {
     return <AppLoading />
   }
-
-  const { choice } = route.params
 
   return (
     <Flat>
@@ -52,10 +90,6 @@ export default function Plano ({ route, navigation }) {
             Plano {choice}
             </Title>
           </Header>
-
-          <List>
-
-          </List>
 
           <List>
             <Button>
@@ -94,11 +128,7 @@ export default function Plano ({ route, navigation }) {
                 style={{ fontFamily: 'Roboto_300Light' }} />
             </Button>
 
-            <Calculo onPress={() => navigation.navigate(
-              'FaleMais',
-              { origin: origin, destiny: destiny, time: time, choice: choice })
-            }>
-              {console.log(origin, destiny, time)}
+            <Calculo onPress={() => validateInput()}>
               <Name style={{ fontFamily: 'Roboto_300Light' }}>Calcular</Name>
             </Calculo>
 

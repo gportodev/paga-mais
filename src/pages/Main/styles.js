@@ -4,15 +4,6 @@ export const List = styled.View`
   flex-direction: column;
 `
 
-export const Button = styled.TouchableOpacity`
-  border-radius: 6;
-  width: 300px;
-  height: 70px;
-  background: #FFFFFF;
-  margin: 30px 0px 5px;
-  flex-direction: row;
-`
-
 export const Cover = styled.View`
   margin-top: 1px;
   width: 63px;
@@ -26,15 +17,24 @@ export const Cover = styled.View`
   align-items: center;
 `
 
-export const Icon = styled.Image`
-  width: 24px;
-  height: 24px;
-`
-
 export const Name = styled.Text`
   font-size: 24px;
   color: #8D5C09;
   padding-left: 12px;
   padding-top: 17px;
 
+`
+
+export const Button = styled.TouchableOpacity`
+  border-radius: 6;
+  width: 300px;
+  height: 70px;
+  background: #FFFFFF;
+  margin: 30px 0px 5px;
+  flex-direction: row;
+`
+
+export const Icon = styled.Image`
+  width: 24px;
+  height: 24px;
 `

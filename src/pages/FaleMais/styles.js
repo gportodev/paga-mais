@@ -1,5 +1,10 @@
 import styled from 'styled-components/native'
 
+export const List = styled.View`
+  flex-direction: column;
+  margin-top: 50px;
+`
+
 export const Output = styled.View`
   border-radius: 6;
   width: 300px;
@@ -15,9 +20,4 @@ export const Name = styled.Text`
   padding-left: 12px;
   padding-top: 17px;
 
-`
-
-export const List = styled.View`
-  flex-direction: column;
-  margin-top: 50px;
 `

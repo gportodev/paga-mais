@@ -15,45 +15,22 @@ import {
 } from './styles'
 
 export default function FaleMais ({ route }) {
-  const { origin, destiny, time, choice } = route.params
-
-  const prices = {
-    '011': { '016': 1.9, '017': 1.7, '018': 1.9 },
-    '016': { '011': 2.9 },
-    '017': { '011': 2.7 },
-    '018': { '011': 1.9 }
-  }
+  const { origin, destiny, time, prices, choice } = route.params
 
   const planCost = useMemo(() => {
     const excedingMinutes = time - choice
 
     if (excedingMinutes <= 0) return 0
 
-    if (!origin) return 0
-
-    if (!destiny) return 0
-
-    if (!time) return 0
-
-    if (!prices[origin][destiny]) return 0
-
     const result = (prices[origin][destiny] * excedingMinutes * 1.1).toFixed(2)
-
-    if (result === 0) return 0
 
     return result
   }, [origin, destiny, time, prices])
 
   const noPlanCost = useMemo(() => {
-    if (!origin) return 0
+    const result = (prices[origin][destiny] * time).toFixed(2)
 
-    if (!destiny) return 0
-
-    if (!time) return 0
-
-    if (!prices[origin][destiny]) return 0
-
-    return (prices[origin][destiny] * time).toFixed(2)
+    return result
   }, [origin, destiny, time, prices])
 
   const [fontsLoaded] = useFonts({
@@ -79,6 +56,7 @@ export default function FaleMais ({ route }) {
           }}>
             <Name style={{ fontFamily: 'Roboto_300Light' }}>
               Com o Plano:  R$ {planCost}
+
             </Name>
           </Output>
 
@@ -87,6 +65,7 @@ export default function FaleMais ({ route }) {
           }}>
             <Name style={{ fontFamily: 'Roboto_300Light' }}>
               Sem o Plano:  R$ {noPlanCost}
+
             </Name>
           </Output>
 
