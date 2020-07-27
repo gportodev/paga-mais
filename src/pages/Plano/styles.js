@@ -11,7 +11,7 @@ export const Button = styled.View`
   width: 300px;
   height: 70px;
   background: #FFFFFF;
-  margin: 5px 0px 5px;
+  margin: 10% 0px 5px;
   flex-direction: row;
 `
 
@@ -42,11 +42,11 @@ export const Icon = styled.Image`
 export const Calculo = styled.TouchableOpacity`
   border-radius: 6;
   width: 300px;
-  height: 50px;
+  height: 55px;
   background: #FFFFFF;
   align-items: center;
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 15%;
   padding-bottom: 15px;
 `
 

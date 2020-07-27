@@ -81,8 +81,8 @@ export default function Plano ({ route, navigation }) {
   }
 
   return (
-    <Flat>
-      <Background source={img}>
+    <Background source={img}>
+      <Flat>
         <Container>
           <Logo source={logo} />
           <Header>
@@ -135,9 +135,9 @@ export default function Plano ({ route, navigation }) {
           </List>
 
         </Container>
+      </Flat>
 
-      </Background>
-    </Flat>
+    </Background>
 
   )
 }
