@@ -1,4 +1,4 @@
-# desafio_telefonia
+# paga-mais
 
 
 O aplicativo foi criado usando o expo, para rodar na máquina necessário:
